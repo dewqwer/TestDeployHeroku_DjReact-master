@@ -16,10 +16,10 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         this.props.onAuth(
-            values.userName,
-            values.email,
-            values.password,
-            values.confirm
+          values.userName,
+          values.email,
+          values.password,
+          values.confirm
         );
         this.props.history.push('/');
       }
@@ -54,15 +54,15 @@ class RegistrationForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        
+
         <FormItem>
-            {getFieldDecorator('userName', {
-                rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-            )}
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
         </FormItem>
-        
+
         <FormItem>
           {getFieldDecorator('email', {
             rules: [{
@@ -100,12 +100,12 @@ class RegistrationForm extends React.Component {
         </FormItem>
 
         <FormItem>
-        <Button type="primary" htmlType="submit" style={{marginRight: '10px'}}>
+          <Button type="primary" htmlType="submit" style={{ marginRight: '10px' }}>
             Signup
         </Button>
-        Or 
-        <NavLink 
-            style={{marginRight: '10px'}} 
+        Or
+        <NavLink
+            style={{ marginRight: '10px' }}
             to='/login/'> login
         </NavLink>
         </FormItem>
@@ -118,16 +118,16 @@ class RegistrationForm extends React.Component {
 const WrappedRegistrationForm = Form.create()(RegistrationForm);
 
 const mapStateToProps = (state) => {
-    return {
-        loading: state.loading,
-        error: state.error
-    }
+  return {
+    loading: state.loading,
+    error: state.error
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2)) 
-    }
+  return {
+    onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedRegistrationForm);
