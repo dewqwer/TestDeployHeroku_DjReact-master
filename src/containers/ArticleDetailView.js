@@ -12,7 +12,7 @@ class ArticleDetail extends React.Component {
 
   componentDidMount() {
     const articleID = this.props.match.params.articleID;
-    axios.get(`http://127.0.0.1:8000/api/${articleID}`).then(res => {
+    axios.get(`http://test-deployheroku.herokuapp.com/api/${articleID}`).then(res => {
       this.setState({
         article: res.data
       });
@@ -26,12 +26,12 @@ class ArticleDetail extends React.Component {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`
     };
-    axios.delete(`http://127.0.0.1:8000/api/${articleID}/delete/`)
-    .then(res => {
-      if (res.status === 204) {
-        this.props.history.push(`/`);
-      }
-    })
+    axios.delete(`http://test-deployheroku.herokuapp.com/api/${articleID}/delete/`)
+      .then(res => {
+        if (res.status === 204) {
+          this.props.history.push(`/`);
+        }
+      })
   };
 
   render() {
