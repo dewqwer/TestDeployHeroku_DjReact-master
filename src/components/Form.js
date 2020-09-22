@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 
 
 class CustomForm extends React.Component {
-  
+
   handleFormSubmit = async (event, requestType, articleID) => {
     event.preventDefault();
 
@@ -22,16 +22,16 @@ class CustomForm extends React.Component {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`,
     };
-    
+
     if (requestType === "post") {
-      await axios.post("http://127.0.0.1:8000/api/create/", postObj)
+      await axios.post("http://test-deployheroku.herokuapp/api/create/", postObj)
         .then(res => {
           if (res.status === 201) {
             this.props.history.push(`/`);
           }
         })
     } else if (requestType === "put") {
-      await axios.put(`http://127.0.0.1:8000/api/${articleID}/update/`, postObj)
+      await axios.put(`http://test-deployheroku.herokuapp/api/${articleID}/update/`, postObj)
         .then(res => {
           if (res.status === 200) {
             this.props.history.push(`/`);
