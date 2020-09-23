@@ -6,15 +6,28 @@ import CustomForm from "../components/Form";
 
 class ArticleList extends React.Component {
   state = {
+    loadingData: true,
+
     articles: []
   };
 
   fetchArticles = () => {
-    axios.get("http://127.0.0.1:8000/api/").then(res => {
-      this.setState({
-        articles: res.data
-      });
-    });
+    this._isMounted = true;
+    if (this.state.loadingData)
+      axios
+        .get("http://127.0.0.1:8000/api/")
+        .then((res) => {
+          this.setState({
+            loadingData: false,
+
+            articles: res.data
+          })
+        })
+        .catch((e) => {
+          console.log('error', e)
+        })
+
+
   }
 
   componentDidMount() {
@@ -23,7 +36,7 @@ class ArticleList extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.token) {
-      this.fetchArticles();      
+      this.fetchArticles();
     }
   }
 
@@ -35,6 +48,7 @@ class ArticleList extends React.Component {
         <CustomForm requestType="post" articleID={null} btnText="Create" />
       </div>
     );
+
   }
 }
 
