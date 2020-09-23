@@ -24,14 +24,14 @@ class CustomForm extends React.Component {
     };
 
     if (requestType === "post") {
-      await axios.post("https://test-deployheroku.herokuapp/api/create/", postObj)
+      await axios.post("https://52.203.87.104/api/create/", postObj)
         .then(res => {
           if (res.status === 201) {
             this.props.history.push(`/`);
           }
         })
     } else if (requestType === "put") {
-      await axios.put(`https://test-deployheroku.herokuapp/api/${articleID}/update/`, postObj)
+      await axios.put(`https://52.203.87.104/api/${articleID}/update/`, postObj)
         .then(res => {
           if (res.status === 200) {
             this.props.history.push(`/`);

@@ -10,7 +10,7 @@ class ArticleList extends React.Component {
   };
 
   fetchArticles = () => {
-    axios.get("https://test-deployheroku.herokuapp.com/api/").then(res => {
+    axios.get("https://52.203.87.104/api/").then(res => {
       this.setState({
         articles: res.data
       });
