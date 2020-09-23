@@ -6,15 +6,29 @@ import CustomForm from "../components/Form";
 
 class ArticleList extends React.Component {
   state = {
+    loadingData: true,
+
     articles: []
   };
 
   fetchArticles = () => {
-    axios.get("https://52.203.87.104/api/").then(res => {
-      this.setState({
-        articles: res.data
-      });
-    });
+    this._isMounted = true;
+    if (this.state.loadingData)
+      axios
+        .get("https://ec2-3-214-46-194.compute-1.amazonaws.com/api/")
+        .then((res) => {
+          this.setState({
+            loadingData: false,
+
+            articles: res.data
+          })
+        })
+        .catch((e) => {
+          console.log('error', e)
+        })
+
+
+
   }
 
   componentDidMount() {
@@ -35,6 +49,7 @@ class ArticleList extends React.Component {
         <CustomForm requestType="post" articleID={null} btnText="Create" />
       </div>
     );
+
   }
 }
 

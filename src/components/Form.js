@@ -24,14 +24,14 @@ class CustomForm extends React.Component {
     };
 
     if (requestType === "post") {
-      await axios.post("https://52.203.87.104/api/create/", postObj)
+      await axios.post("https://ec2-3-214-46-194.compute-1.amazonaws.com/api/create/", postObj)
         .then(res => {
           if (res.status === 201) {
             this.props.history.push(`/`);
           }
         })
     } else if (requestType === "put") {
-      await axios.put(`https://52.203.87.104/api/${articleID}/update/`, postObj)
+      await axios.put(`https://ec2-3-214-46-194.compute-1.amazonaws.com/api/${articleID}/update/`, postObj)
         .then(res => {
           if (res.status === 200) {
             this.props.history.push(`/`);

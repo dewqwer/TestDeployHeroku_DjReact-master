@@ -1,10 +1,16 @@
 import os
 import dj_database_url
+import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+
+# DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = ['test-deployheroku.herokuapp.com', '127.0.0.1']
+
+# ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,6 +42,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'djreact.urls'
@@ -59,11 +67,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djreact.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    'default': {
+        'ENGINE': '',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'POST': '',
+    }
+}
 
+# ใช้เฉพาะตอนที่ run local
+# DATABASES['default'] = dj_database_url.config(
+#     default='postgres://xjfsxcxrhbkhji:43d860eb59619f7617e0130123174992d8b3980ff9185d8c8d58574cc9e44915@ec2-3-214-46-194.compute-1.amazonaws.com:5432/dedn2ssfroaeja')
+
+# ใช้กับตอนที่ deploy
+DATABASES{
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
@@ -81,11 +100,12 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static'),
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
@@ -122,3 +142,5 @@ CSRF_COOKIE_NAME = "csrftoken"
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+django_heroku.settings(locals())

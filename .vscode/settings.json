@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\Dew2018\\anaconda3\\envs\\test\\python.exe",
+    "python.pythonPath": "C:\\Users\\Dew2018\\anaconda3\\envs\\newTest\\python.exe",
     "editor.formatOnSave": true,
     "python.linting.pycodestyleEnabled": true,
     "python.linting.pylintPath": "pylint",
