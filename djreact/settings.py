@@ -78,13 +78,13 @@ DATABASES = {
 }
 
 # ใช้เฉพาะตอนที่ run local
-DATABASES['default'] = dj_database_url.config(
-    default='postgres://xjfsxcxrhbkhji:43d860eb59619f7617e0130123174992d8b3980ff9185d8c8d58574cc9e44915@ec2-3-214-46-194.compute-1.amazonaws.com:5432/dedn2ssfroaeja')
+# DATABASES['default'] = dj_database_url.config(
+#     default='postgres://xjfsxcxrhbkhji:43d860eb59619f7617e0130123174992d8b3980ff9185d8c8d58574cc9e44915@ec2-3-214-46-194.compute-1.amazonaws.com:5432/dedn2ssfroaeja')
 
 # ใช้กับตอนที่ deploy
-# DATABASES{
-#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-# }
+DATABASES{
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

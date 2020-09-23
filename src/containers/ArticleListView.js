@@ -15,7 +15,7 @@ class ArticleList extends React.Component {
     this._isMounted = true;
     if (this.state.loadingData)
       axios
-        .get("http://127.0.0.1:8000/api/")
+        .get("https://ec2-3-214-46-194.compute-1.amazonaws.com/api/")
         .then((res) => {
           this.setState({
             loadingData: false,
@@ -26,6 +26,7 @@ class ArticleList extends React.Component {
         .catch((e) => {
           console.log('error', e)
         })
+
 
 
   }
