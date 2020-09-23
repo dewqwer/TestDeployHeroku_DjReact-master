@@ -3,8 +3,8 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
-DEBUG = True
-ALLOWED_HOSTS = ['test-deployheroku.herokuapp.com', '127.0.0.1']
+DEBUG = False
+ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
