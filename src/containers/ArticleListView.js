@@ -15,7 +15,7 @@ class ArticleList extends React.Component {
     this._isMounted = true;
     if (this.state.loadingData)
       axios
-        .get("https://ec2-3-214-46-194.compute-1.amazonaws.com/api/")
+        .get("https://test-deployheroku.herokuapp.com/api/")
         .then((res) => {
           this.setState({
             loadingData: false,
