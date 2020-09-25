@@ -9,12 +9,15 @@ SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
 # DEBUG = True
 DEBUG = False
 
-mimetypes.add_type("application/javascript", ".js", True)
+# mimetypes.add_type("application/javascript", ".js", True)
 
 
-ALLOWED_HOSTS = ['test-deployheroku.herokuapp.com']
+ALLOWED_HOSTS = ['https://test-deployheroku.herokuapp.com/']
 
 # ALLOWED_HOSTS = []
+
+default_app_config = 'articles.apps.AppConfig'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,16 +73,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djreact.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'POST': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': '',
+#         'NAME': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#         'HOST': '',
+#         'POST': '',
+#     }
+# }
 
 # ใช้เฉพาะตอนที่ run local
 # DATABASES['default'] = dj_database_url.config(
@@ -116,24 +119,11 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": (
-        "rest_framework.renderers.BrowsableAPIRenderer",
-        "rest_framework.renderers.JSONRenderer",
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
     ),
-    "DEFAULT_PARSER_CLASSES": (
-        "rest_framework.parsers.JSONParser",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-        "backend.permissions.DjangoModelViewPermissions",
-    ),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-    ),
-    "DEFAULT_PAGINATION_CLASS": "backend.pagination.StandardPagination",
-    "DEFAULT_FILTER_BACKENDS": (
-        "rest_framework.filters.SearchFilter",
-        "rest_framework.filters.DjangoFilterBackend",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
